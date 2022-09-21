@@ -39,7 +39,7 @@ public class Employee {
 	}
 	
 	
-	public double calculateGrossWeekly(Employee employee) {
+	public double calculateGrossWeekly(double hoursWorked) {
 		
 		double grossWeeklyPay = 0;
 		double overTimeHours;
@@ -48,26 +48,26 @@ public class Employee {
 		
 			case 'S':
 			
-				grossWeeklyPay = (employee.getPayRate() / 52);
+				grossWeeklyPay = payRate / 52;
 				
 				break;
 			case 'H':
 				
-				if (employee.getMaxHours() <= 40) {
-					grossWeeklyPay = (employee.getPayRate() * employee.getMaxHours()); 
-				} else if (employee.getMaxHours() > 40 && employee.getMaxHours() <= 60) {
-					overTimeHours = employee.getMaxHours() - 40;
-					grossWeeklyPay = (employee.getPayRate() * 40) + ((employee.getPayRate() * 1.5) * overTimeHours);
+				if (maxHours <= 40) {
+					grossWeeklyPay = (payRate * maxHours); 
+				} else if (maxHours > 40 && maxHours <= 60) {
+					overTimeHours = maxHours - 40;
+					grossWeeklyPay = (payRate * 40) + ((payRate * 1.5) * overTimeHours);
 				} else {
 					overTimeHours = 20;
-					grossWeeklyPay = (employee.getPayRate() * 40) + ((employee.getPayRate() * 1.5) * overTimeHours);
+					grossWeeklyPay = (payRate * 40) + ((payRate * 1.5) * overTimeHours);
 				}
 				
 				break;
 				
 			case 'C':
 		
-				grossWeeklyPay = employee.getPayRate() * employee.getMaxHours();
+				grossWeeklyPay = payRate * maxHours;
 				
 				break;
 		}
@@ -77,18 +77,86 @@ public class Employee {
 		
 	}
 	
-	public double calculateDeductions(double grossPay) {
-		return grossPay;
+	public double calcWithhold(double gross) {
+		
+		if (gross < 1000) {
+			gross = gross * 0.075;
+		} else if (gross >= 1000 && gross < 2000) {
+			gross = gross * 0.12;
+		} else {
+			gross = gross * 0.17;
+		}
+		
+		return gross;
 		
 		
 	}
 	
-	public void calculateNetPay() {
+	public double calcCPP(double gross) {
+		
+		gross = gross * 0.0475;
+		
+		return gross;
 		
 		
 	}
 	
-	public void compareEmployee() {
+	public double calcEI(double gross) {
+		
+		gross = gross * 0.018;
+		
+		return gross;
+		
+		
+	}
+	
+	public double calcExtHealth(double gross) {
+		
+		gross = gross * 0.013;
+		
+		return gross;
+	
+	
+	}
+	
+	public double calcUnionDues(double gross) {
+		
+		gross = gross * 0.01;
+		
+		return gross;
+	
+	
+	}
+	
+	public double calculateNetPay(Employee employee, double gross) {
+		double netPay = 0;
+		
+		switch (type) {
+		
+		case 'S':
+		
+			
+			
+			break;
+		case 'H':
+			
+			
+			
+			break;
+			
+		case 'C':
+	
+			
+			
+			break;
+	}
+		
+		return netPay;
+		
+		
+	}
+	
+	public void compareTo(Employee other) {
 		
 		
 	}

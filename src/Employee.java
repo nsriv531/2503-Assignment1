@@ -39,12 +39,46 @@ public class Employee {
 	}
 	
 	
-	public void calculateGrossWeekly() {
+	public double calculateGrossWeekly(Employee employee) {
+		
+		double grossWeeklyPay = 0;
+		double overTimeHours;
+		
+		switch (type) {
+		
+			case 'S':
+			
+				grossWeeklyPay = (employee.getPayRate() / 52);
+				
+				break;
+			case 'H':
+				
+				if (employee.getMaxHours() <= 40) {
+					grossWeeklyPay = (employee.getPayRate() * employee.getMaxHours()); 
+				} else if (employee.getMaxHours() > 40 && employee.getMaxHours() <= 60) {
+					overTimeHours = employee.getMaxHours() - 40;
+					grossWeeklyPay = (employee.getPayRate() * 40) + ((employee.getPayRate() * 1.5) * overTimeHours);
+				} else {
+					overTimeHours = 20;
+					grossWeeklyPay = (employee.getPayRate() * 40) + ((employee.getPayRate() * 1.5) * overTimeHours);
+				}
+				
+				break;
+				
+			case 'C':
+		
+				grossWeeklyPay = employee.getPayRate() * employee.getMaxHours();
+				
+				break;
+		}
+		
+		return grossWeeklyPay;
 		
 		
 	}
 	
-	public void calculateDeductions() {
+	public double calculateDeductions(double grossPay) {
+		return grossPay;
 		
 		
 	}

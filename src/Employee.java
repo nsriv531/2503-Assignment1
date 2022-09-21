@@ -38,6 +38,27 @@ public class Employee {
 		this.maxHours = employee.getMaxHours();
 	}
 	
+	
+	public void calculateGrossWeekly() {
+		
+		
+	}
+	
+	public void calculateDeductions() {
+		
+		
+	}
+	
+	public void calculateNetPay() {
+		
+		
+	}
+	
+	public void compareEmployee() {
+		
+		
+	}
+	
 	public int getEmpNo() {
 		
 		return empNo;

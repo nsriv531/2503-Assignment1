@@ -1,11 +1,11 @@
 public class Employee {
 
-	int empNo;
-	String empName;
-	String department;
-	char type;
-	double payRate;
-	double maxHours;
+	private int empNo;
+	private String empName;
+	private String department;
+	private char type;
+	private double payRate;
+	private double maxHours;
 	
 	public Employee() {
 		
@@ -78,9 +78,9 @@ public class Employee {
 	}
 	
 	public double calcWithhold(double gross) {
-		double FEDTAXREDUCTION1 = 0.075;
-		double FEDTAXREDUCTION2 = 0.12;
-		double FEDTAXREDUCTION3 = 0.17;
+		final double FEDTAXREDUCTION1 = 0.075;
+		final double FEDTAXREDUCTION2 = 0.12;
+		final double FEDTAXREDUCTION3 = 0.17;
 		
 		
 		if (gross < 1000) {
@@ -97,7 +97,7 @@ public class Employee {
 	}
 	
 	public double calcCPP(double gross) {
-		double CPPCONTRIBUTION = 0.0475;
+		final double CPPCONTRIBUTION = 0.0475;
 		
 		gross = gross * CPPCONTRIBUTION;
 		
@@ -107,7 +107,7 @@ public class Employee {
 	}
 	
 	public double calcEI(double gross) {
-		double EICONTRIBUTION = 0.018;
+		final double EICONTRIBUTION = 0.018;
 		
 		
 		gross = gross * EICONTRIBUTION;
@@ -119,7 +119,7 @@ public class Employee {
 	
 	public double calcExtHealth(double gross) {
 		
-		double PREMIUMCHARGE = 0.013;
+		final double PREMIUMCHARGE = 0.013;
 		
 		gross = gross * PREMIUMCHARGE;
 		
@@ -129,7 +129,7 @@ public class Employee {
 	}
 	
 	public double calcUnionDues(double gross) {
-		double UNIONDUES = 0.01;
+		final double UNIONDUES = 0.01;
 		
 		gross = gross * UNIONDUES;
 		

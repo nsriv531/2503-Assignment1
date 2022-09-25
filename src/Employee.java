@@ -373,15 +373,15 @@ public class Employee {
 		
 		case 'S' :
 			
-			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Salary";
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type: " + "Salary";
 			
 		case 'H' :
 			
-			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Hourly";
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type: " + "Hourly";
 			
 		case 'C' :
 			
-			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Consultant";
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type: " + "Consultant";
 		
 		}
 		return "Employee []";

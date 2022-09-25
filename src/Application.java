@@ -50,8 +50,14 @@ public class Application {
 			fileReader.close();
 		}
 		
-		System.out.println(employees.get(0));
-		System.out.println(employees.get(0).calculateNetPay(employees.get(0).getMaxHours()));
+		for (Employee tempEmployee: employees) {
+			
+			System.out.println(tempEmployee);
+			System.out.println("Employee Net pay: $"+tempEmployee.calculateNetPay(tempEmployee.getMaxHours()));
+			System.out.println("");
+			
+		}
+		
 
 	}
 

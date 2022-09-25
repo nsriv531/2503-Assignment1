@@ -78,13 +78,17 @@ public class Employee {
 	}
 	
 	public double calcWithhold(double gross) {
+		double FEDTAXREDUCTION1 = 0.075;
+		double FEDTAXREDUCTION2 = 0.12;
+		double FEDTAXREDUCTION3 = 0.17;
+		
 		
 		if (gross < 1000) {
-			gross = gross * 0.075;
+			gross = gross * FEDTAXREDUCTION1;
 		} else if (gross >= 1000 && gross < 2000) {
-			gross = gross * 0.12;
+			gross = gross * FEDTAXREDUCTION2;
 		} else {
-			gross = gross * 0.17;
+			gross = gross * FEDTAXREDUCTION3;
 		}
 		
 		return gross;
@@ -93,8 +97,9 @@ public class Employee {
 	}
 	
 	public double calcCPP(double gross) {
+		double CPPCONTRIBUTION = 0.0475;
 		
-		gross = gross * 0.0475;
+		gross = gross * CPPCONTRIBUTION;
 		
 		return gross;
 		
@@ -102,8 +107,10 @@ public class Employee {
 	}
 	
 	public double calcEI(double gross) {
+		double EICONTRIBUTION = 0.018;
 		
-		gross = gross * 0.018;
+		
+		gross = gross * EICONTRIBUTION;
 		
 		return gross;
 		
@@ -112,7 +119,9 @@ public class Employee {
 	
 	public double calcExtHealth(double gross) {
 		
-		gross = gross * 0.013;
+		double PREMIUMCHARGE = 0.013;
+		
+		gross = gross * PREMIUMCHARGE;
 		
 		return gross;
 	
@@ -120,44 +129,64 @@ public class Employee {
 	}
 	
 	public double calcUnionDues(double gross) {
+		double UNIONDUES = 0.01;
 		
-		gross = gross * 0.01;
+		gross = gross * UNIONDUES;
 		
 		return gross;
 	
 	
 	}
 	
-	public double calculateNetPay(Employee employee, double gross) {
+	public double calculateNetPay(double hoursWorked) {
 		double netPay = 0;
+		double grossWithoutReductions = 0;
+		double CPPReduction = 0;
+		double EIReduction = 0;
+		double premiumsReduction = 0;
+		double unionDuesReduction = 0;
 		
-		switch (type) {
+		grossWithoutReductions = calcWithhold(calculateGrossWeekly(hoursWorked));
+		CPPReduction = calcCPP(grossWithoutReductions);
+		EIReduction = calcEI(grossWithoutReductions);
+		premiumsReduction = calcExtHealth(grossWithoutReductions);
+		unionDuesReduction = calcUnionDues(grossWithoutReductions);
+		
+		switch (this.type) {
 		
 		case 'S':
-		
 			
+			netPay = grossWithoutReductions - CPPReduction - EIReduction - premiumsReduction;
 			
 			break;
 		case 'H':
 			
-			
+			netPay = grossWithoutReductions - CPPReduction - EIReduction - premiumsReduction - unionDuesReduction;
 			
 			break;
 			
 		case 'C':
-	
 			
+			netPay = grossWithoutReductions - CPPReduction - EIReduction;
 			
 			break;
 	}
 		
 		return netPay;
 		
-		
 	}
 	
-	public void compareTo(Employee other) {
+	public int compareTo(Employee other) {
 		
+		int otherEmpNum = other.getEmpNo();
+		
+		if (this.empNo < otherEmpNum) {
+			return -1;
+		} else if (this.empNo == otherEmpNum) {
+			return 0;
+		} else {
+			return 1;
+		}
 		
 	}
 	
@@ -210,4 +239,35 @@ public class Employee {
 		
 		this.maxHours = maxHours;
 	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String toString() {
+		
+		switch (this.type) {
+		
+		case 'S' :
+			
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Salary";
+			
+		case 'H' :
+			
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Hourly";
+			
+		case 'C' :
+			
+			return "Employee Number: " + empNo + "\n" + "Employee Name: " + empName + "\n" + "Employee Type " + "Consultant";
+		
+		}
+		return "Employee []";
+	}
+	
+	
+	
 }

@@ -3,6 +3,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class runs the program; reads the file with the Employee data and makes the employees
+ * @author Emilio Guajardo Garza, Nikhil
+ * @version 1.0
+ * Last Modified: September 25, 2022  Commented code Emilio Guajardo Garza
+ */
+
 public class Application {
 
 	public static void main(String[] args) throws FileNotFoundException {

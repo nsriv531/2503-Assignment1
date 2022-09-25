@@ -51,7 +51,7 @@ public class Application {
 		}
 		
 		System.out.println(employees.get(0));
-		System.out.println(employees.get(0).calculateNetPay(20));
+		System.out.println(employees.get(0).calculateNetPay(employees.get(0).getMaxHours()));
 
 	}
 

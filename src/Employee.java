@@ -199,12 +199,14 @@ public class Employee {
 	public double calculateNetPay(double hoursWorked) {
 		double netPay = 0;
 		double grossWithoutReductions = 0;
+		double federalTaxReduction = 0;
 		double CPPReduction = 0;
 		double EIReduction = 0;
 		double premiumsReduction = 0;
 		double unionDuesReduction = 0;
 		
-		grossWithoutReductions = calcWithhold(calculateGrossWeekly(hoursWorked));
+		grossWithoutReductions = calculateGrossWeekly(hoursWorked);
+		federalTaxReduction = calcWithhold(grossWithoutReductions);
 		CPPReduction = calcCPP(grossWithoutReductions);
 		EIReduction = calcEI(grossWithoutReductions);
 		premiumsReduction = calcExtHealth(grossWithoutReductions);
@@ -214,18 +216,18 @@ public class Employee {
 		
 		case 'S':
 			
-			netPay = grossWithoutReductions - CPPReduction - EIReduction - premiumsReduction;
+			netPay = grossWithoutReductions - federalTaxReduction - CPPReduction - EIReduction - premiumsReduction;
 			
 			break;
 		case 'H':
 			
-			netPay = grossWithoutReductions - CPPReduction - EIReduction - premiumsReduction - unionDuesReduction;
+			netPay = grossWithoutReductions - federalTaxReduction - CPPReduction - EIReduction - premiumsReduction - unionDuesReduction;
 			
 			break;
 			
 		case 'C':
 			
-			netPay = grossWithoutReductions - CPPReduction - EIReduction;
+			netPay = grossWithoutReductions - federalTaxReduction - CPPReduction - EIReduction;
 			
 			break;
 	}
